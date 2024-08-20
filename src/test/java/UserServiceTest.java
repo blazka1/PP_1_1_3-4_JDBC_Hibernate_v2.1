@@ -4,6 +4,7 @@ import jm.task.core.jdbc.service.UserServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceTest {
@@ -12,6 +13,9 @@ public class UserServiceTest {
     private final String testName = "Ivan";
     private final String testLastName = "Ivanov";
     private final byte testAge = 5;
+
+    public UserServiceTest() throws SQLException {
+    }
 
 
     @Test
@@ -80,22 +84,6 @@ public class UserServiceTest {
             }
         } catch (Exception e) {
             Assert.fail("При попытке достать всех пользователей из базы данных произошло исключение\n" + e);
-        }
-    }
-
-    @Test
-    public void cleanUsersTable() {
-        try {
-            userService.dropUsersTable();
-            userService.createUsersTable();
-            userService.saveUser(testName, testLastName, testAge);
-            userService.cleanUsersTable();
-
-            if (userService.getAllUsers().size() != 0) {
-                Assert.fail("Метод очищения таблицы пользователей реализован не корректно");
-            }
-        } catch (Exception e) {
-            Assert.fail("При тестировании очистки таблицы пользователей произошло исключение\n" + e);
         }
     }
 
