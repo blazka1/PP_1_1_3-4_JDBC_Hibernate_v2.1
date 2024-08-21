@@ -14,7 +14,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private static final Logger logger = Logger.getLogger(UserDaoJDBCImpl.class.getName());
 
     public UserDaoJDBCImpl() {
-        // Пустой конструктор
+
     }
 
     public void createUsersTable() {
